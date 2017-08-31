@@ -19,23 +19,18 @@ List<string> fieldChoices = new List<string>()
 MultiChoiceFieldValueList values = MultiChoiceHelpers.CreateAndGetMultiChoices(dbc, proxy, FIELD_NAME, fieldChoices);
 ```
 
+![screenshot](https://github.com/Anexsys/RelativityMultiChoiceHandler/blob/master/resources/multichoices1.png)
+
+
 Nested choices can also be created:
 ```C#
 List<string> fieldChoices = new List<string>()
 {
-"A/Aa/Aardvark",
-"A/Ap/Apple",
-"A/An/Anexsys",
-"B/Ba/Bat"
+    "A/Aa/Aardvark",
+    "A/Ap/Apple",
+    "A/An/Anexsys",
+    "B/Ba/Bat"
 }
 ```
 
-
-
-
-
-
-
-
-
-
+![screenshot](https://github.com/Anexsys/RelativityMultiChoiceHandler/blob/master/resources/multichoices2.png)
