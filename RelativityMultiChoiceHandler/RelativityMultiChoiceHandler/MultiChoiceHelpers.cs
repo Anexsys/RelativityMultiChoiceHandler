@@ -12,7 +12,7 @@ namespace RelativityMultiChoiceHandler
     public class MultiChoiceHelpers
     {
         /// <summary>
-        /// 
+        /// Gets a list of Choices in a MultiChoiceFieldValueList from a list of strings, and creates any choices that don't exist in Relativity
         /// </summary>
         /// <param name="db">The IDBContext for the workspace</param>
         /// <param name="proxy">The IRSAPIClient for the workspace</param>
@@ -69,7 +69,6 @@ namespace RelativityMultiChoiceHandler
                 }
 
                 var choiceIds = GetChoiceId(db, codeTypeId, value);
-                //choice doesn't exist so add it in
 
                 try
                 {
@@ -163,12 +162,10 @@ namespace RelativityMultiChoiceHandler
 
         private static kCura.Relativity.Client.DTOs.Choice CreateChoiceInRelativity(IRSAPIClient proxy, kCura.Relativity.Client.DTOs.Choice choice)
         {
-            // STEP 4: Execute the Create method on the Repository
             WriteResultSet<kCura.Relativity.Client.DTOs.Choice> writeResult = null;
             try
             {
                 writeResult = proxy.Repositories.Choice.Create(choice);
-                // Check for success
                 return writeResult.Success ? writeResult.Results[0].Artifact : null;
             }
             catch (Exception ex)

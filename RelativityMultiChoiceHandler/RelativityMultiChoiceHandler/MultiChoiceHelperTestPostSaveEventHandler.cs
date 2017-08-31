@@ -61,8 +61,13 @@ namespace RelativityMultiChoiceHandler
 
                 obj.ArtifactTypeID = this.ActiveArtifact.ArtifactTypeID;
 
-                obj.Fields.Add(new kCura.Relativity.Client.DTOs.FieldValue(FIELD_NAME_1, MultiChoiceHelpers.CreateAndGetMultiChoices(dbc, proxy, FIELD_NAME_1, fieldChoices1)));
-                obj.Fields.Add(new kCura.Relativity.Client.DTOs.FieldValue(FIELD_NAME_2, MultiChoiceHelpers.CreateAndGetMultiChoices(dbc, proxy, FIELD_NAME_2, fieldChoices2)));
+                MultiChoiceFieldValueList values1 = MultiChoiceHelpers.CreateAndGetMultiChoices(dbc, proxy, FIELD_NAME_1, fieldChoices1);
+                values1.UpdateBehavior = MultiChoiceUpdateBehavior.Merge;
+                MultiChoiceFieldValueList values2 = MultiChoiceHelpers.CreateAndGetMultiChoices(dbc, proxy, FIELD_NAME_2, fieldChoices2);
+                values2.UpdateBehavior = MultiChoiceUpdateBehavior.Merge;
+
+                obj.Fields.Add(new kCura.Relativity.Client.DTOs.FieldValue(FIELD_NAME_1, values1));
+                obj.Fields.Add(new kCura.Relativity.Client.DTOs.FieldValue(FIELD_NAME_2, values2));
 
                 WriteResultSet<RDO> results = proxy.Repositories.RDO.Update(obj);
                 if (!results.Success)
